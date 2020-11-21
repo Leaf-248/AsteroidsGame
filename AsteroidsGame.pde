@@ -27,10 +27,10 @@ public void keyPressed(){
   if (key == 'd') { //turn right
     bob.turn(10);
   }
-  if (key == 'w') { //accelerate
+  if (key == 'w') {
     bob.accelerate(0.2);
   } 
-  if (key == 's') { //hyperspace
+  if (key == 's') {
     bob.myCenterX = (int)(Math.random()*400);
     bob.myCenterY = (int)(Math.random()*400);  
     bob.myXspeed = 0;
@@ -38,6 +38,4 @@ public void keyPressed(){
     bob.myPointDirection = (int)(Math.random()*360);
   }
 }
-  
-  
   
