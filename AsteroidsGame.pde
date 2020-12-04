@@ -26,7 +26,11 @@ public void draw() {
   for(int i = 0; i<asteroid.size(); i++){
     asteroid.get(i).show();
     asteroid.get(i).move();
+    if(dist((float)asteroid.get(i).getX(), (float)asteroid.get(i).getY(), (float)bob.myCenterX, (float)bob.myCenterY)<=20){
+      asteroid.remove(i);
+    }
   }
+    
 }
 
 public void keyPressed(){
@@ -48,4 +52,6 @@ public void keyPressed(){
     bob.myPointDirection = (int)(Math.random()*360);
   }
 }
+  
+  
   
