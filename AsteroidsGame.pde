@@ -1,7 +1,7 @@
 Spaceship bob= new Spaceship();
 Star[] stars = new Star[200];
 ArrayList <Asteroid> asteroid = new ArrayList <Asteroid>();
-
+ArrayList <Bullets> shots = new ArrayList <Bullets>();
 public void setup() {
  
   size(400, 400);
@@ -12,6 +12,7 @@ public void setup() {
   for(int i = 0; i<20; i++){
     asteroid.add(new Asteroid());
   }
+
 }
 
 public void draw() {
@@ -22,15 +23,23 @@ public void draw() {
   for(int i = 0; i<200; i++){
     stars[i].show();
   }
-  
+  //making the bullets show
+  for(int i = 0; i<shots.size(); i++){
+    shots.get(i).show();
+    shots.get(i).move();
+  }
+  //testing for bullet collision dont mind the mess
   for(int i = 0; i<asteroid.size(); i++){
     asteroid.get(i).show();
     asteroid.get(i).move();
-    if(dist((float)asteroid.get(i).getX(), (float)asteroid.get(i).getY(), (float)bob.myCenterX, (float)bob.myCenterY)<=20){
-      asteroid.remove(i);
+    for(int j = 0; j<shots.size(); j++){
+      if(dist((float)asteroid.get(i).getX(), (float)asteroid.get(i).getY(), (float)shots.get(j).getX(), (float)shots.get(j).getY()) <= 15){                 
+        asteroid.remove(i);
+        shots.remove(j);
+        break;
+      }
     }
-  }
-    
+  } 
 }
 
 public void keyPressed(){
@@ -51,7 +60,11 @@ public void keyPressed(){
     bob.myYspeed = 0;
     bob.myPointDirection = (int)(Math.random()*360);
   }
+  if(key == 'k'){
+    shots.add(new Bullets(bob));
+    }
 }
+
   
   
   
